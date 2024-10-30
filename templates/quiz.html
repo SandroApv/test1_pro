@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <style>
+        body {
+            position: relative;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        #score {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <form id="quiz-form" onsubmit="return calculateScore()">
+        <h2>Domanda 1: Come ti chiami?</h2>
+        <input type="text" name="username">
+
+        <h2>Domanda 2: Qual è il gruppo rock/metal migliore del pianeta? E perché proprio Korn?</h2>
+        <input type="radio" name="question1" value="Non saprei"> Non saprei<br>
+        <input type="radio" name="question1" value="Mi sembra ovvio!"> Mi sembra ovvio!<br>
+        <input type="radio" name="question1" value="Red Hot Chilly Peppers"> Red Hot Chilly Peppers<br>
+
+        <h2>Domanda 3: Qual è il tuo animale preferito?</h2>
+        <input type="radio" name="question2" value="cane"> Cane<br>
+        <input type="radio" name="question2" value="cane1"> Cane<br>
+        <input type="radio" name="question2" value="cane2"> Cane<br>
+
+        <h2>Domanda 4: Parlaci dei tuoi hobbies:</h2>
+        <textarea name="question3" rows="4" cols="50"></textarea>
+
+        <br><br>
+        <input type="submit" value="Submit Answers">
+
+        <!-- Display score in the top right corner -->
+        <div style="position: absolute; top: 10px; right: 10px;">
+            <p>Best Score: 100%</p>
+        </div>
+    </form>
+
+    <!-- Score display -->
+    <h3 id="score">Score: 0%</h3>
+
+    <!-- Footer with information about the author -->
+    <footer>
+        Alessandro Fiumara
+    </footer>
+
+    <script>
+        function calculateScore() {
+            // Prevent form submission
+            event.preventDefault();
+
+            let score = 0;
+            const totalQuestions = 2; // Update with the number of scored questions
+
+            // Check answers
+            const question1 = document.querySelector('input[name="question1"]:checked');
+            const question2 = document.querySelector('input[name="question2"]:checked');
+
+            // Correct answers
+            if (question1 && question1.value === "Mi sembra ovvio!") score++;
+            if (question2 && question2.value === "cane") score++;
+
+            // Calculate percentage score
+            const percentageScore = (score / totalQuestions) * 100;
+            document.getElementById('score').innerText = `Score: ${percentageScore}%`;
+
+            return false;
+        }
+    </script>
+</body>
+</html>
