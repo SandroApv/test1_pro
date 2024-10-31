@@ -30,23 +30,46 @@
 <body>
     <h1>Quiz</h1>
     <form id="quiz-form" onsubmit="return calculateScore()">
-        <h2>Domanda 1: Come ti chiami?</h2>
+        <h2>Domanda 1: Iniziamo con domande semplici: come ti chiami?</h2>
         <input type="text" name="username">
 
         <h2>Domanda 2: Qual è il gruppo rock/metal migliore del pianeta? E perché proprio Korn?</h2>
-        <input type="radio" name="question1" value="Non saprei"> Non saprei<br>
-        <input type="radio" name="question1" value="Mi sembra ovvio!"> Mi sembra ovvio!<br>
-        <input type="radio" name="question1" value="Red Hot Chilly Peppers"> Red Hot Chilly Peppers<br>
+        <input type="radio" name="domanda2" value="Non saprei"> Non saprei<br>
+        <input type="radio" name="domanda2" value="Mi sembra ovvio!"> Mi sembra ovvio!<br>
+        <input type="radio" name="domanda2" value="Red Hot Chilly Peppers"> Red Hot Chilly Peppers<br>
 
         <h2>Domanda 3: Qual è il tuo animale preferito?</h2>
-        <input type="radio" name="question2" value="cane"> Cane<br>
-        <input type="radio" name="question2" value="cane1"> Cane<br>
-        <input type="radio" name="question2" value="cane2"> Cane<br>
+        <input type="radio" name="domanda3" value="cane"> Cane puccioso, migliore amico dell'uomo<br>
+        <input type="radio" name="domanda3" value="cane1"> Granchio del cocco<br>
+        <input type="radio" name="domanda3" value="cane2"> Armadillidae<br>
 
         <h2>Domanda 4: Parlaci dei tuoi hobbies:</h2>
-        <textarea name="question3" rows="4" cols="50"></textarea>
+        <textarea name="domanda4" rows="4" cols="50"></textarea>
 
-        <br><br>
+        <h2>Domanda 5: Parlaci del tuo hobby preferito in assoluto: il coding. Cosa vorresti creare con Python?</h2>
+        <textarea name="domanda5"></textarea>
+        
+        <h2>Domanda 6: Che cos'è l'intelligenza artificiale?</h2>
+        <input type="radio" name="domanda6" value="macchina"> Una macchina che può fare azioni umane, come rispondere a domande.<br>
+        <input type="radio" name="domanda6" value="software"> Un programma che crea video divertenti<br>
+        <input type="radio" name="domanda6" value="intelligenza"> Una capacità di un essere umano per riconoscere e svolgere azioni.<br> 
+        
+        <h2>Domanda 7: Quale linguaggio di programmazione è spesso usato per creare progetti di intelligenza artificiale?</h2>
+        <input type="radio" name="domanda7" value="python"> Python<br>
+        <input type="radio" name="domanda7" value="inglese"> Inglese<br>
+        <input type="radio" name="domanda7" value="html"> HTML<br>
+
+        <h2>Domanda 8: Qual è un buon esempio di visione computerizzata?</h2>
+        <input type="radio" name="domanda8" value="computer vision"> Un'app che riconosce il volto delle persone.<br>
+        <input type="radio" name="domanda8" value="robot"> Un robot che può fare azioni umane, come rispondere a domande.<br>  
+        <input type="radio" name="domanda8" value="musica"> Un'app che riconosce la musica.<br>
+
+        <h2>Domanda 9: Quale di questi è un esempio di NLP (Elaborazione del Linguaggio Naturale)?</h2>
+        <input type="radio" name="domanda9" value="analisi sentimentale"> Un'app che riconosce il sentiment di un testo.<br>
+        <input type="radio" name="domanda9" value="traduzione"> Un'app che traduce testi da un linguaggio all'altro.<br>
+        <input type="radio" name="domanda9" value="generazione testo"> Un'app che genera disegni.<br>
+
+        <br>
         <input type="submit" value="Submit Answers">
 
         <!-- Display score in the top right corner -->
@@ -69,15 +92,23 @@
             event.preventDefault();
 
             let score = 0;
-            const totalQuestions = 2; // Update with the number of scored questions
+            const totalQuestions = 6; // Total questions being scored
 
             // Check answers
-            const question1 = document.querySelector('input[name="question1"]:checked');
-            const question2 = document.querySelector('input[name="question2"]:checked');
+            const domanda2 = document.querySelector('input[name="domanda2"]:checked');
+            const domanda3 = document.querySelector('input[name="domanda3"]:checked');
+            const domanda6 = document.querySelector('input[name="domanda6"]:checked');
+            const domanda7 = document.querySelector('input[name="domanda7"]:checked');
+            const domanda8 = document.querySelector('input[name="domanda8"]:checked');
+            const domanda9 = document.querySelector('input[name="domanda9"]:checked');
 
             // Correct answers
-            if (question1 && question1.value === "Mi sembra ovvio!") score++;
-            if (question2 && question2.value === "cane") score++;
+            if (domanda2 && domanda2.value === "Mi sembra ovvio!") score++;
+            if (domanda3 && domanda3.value === "cane") score++;
+            if (domanda6 && domanda6.value === "macchina") score++;
+            if (domanda7 && domanda7.value === "python") score++;
+            if (domanda8 && domanda8.value === "computer vision") score++;
+            if (domanda9 && domanda9.value === "analisi sentimentale") score++;
 
             // Calculate percentage score
             const percentageScore = (score / totalQuestions) * 100;
